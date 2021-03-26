@@ -9,7 +9,8 @@ fetch("https://swapi.dev/api/starships/")
 let btnSearch = document.querySelector(".btn-outline-success");
 btnSearch.addEventListener("click", seacrhItems);
 
-function seacrhItems() {
+function seacrhItems(e) {
+    e.preventDefault()
   let inputSearch = document.querySelector(".inputSearch").value;
   let item_content = document.querySelector(".items__content");
   item_content.classList.remove("error");
