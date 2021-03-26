@@ -1,4 +1,4 @@
-fetch("http://swapi.dev/api/starships/")
+fetch("https://swapi.dev/api/starships/")
   .then((response) => {
     return response.json();
   })
@@ -76,9 +76,9 @@ function buttonInfo(event) {
   }
   
   if (inputSearch) {
-    link = `http://swapi.dev/api/starships/?search=${inputSearch}&page=${page}`;
+    link = `https://swapi.dev/api/starships/?search=${inputSearch}&page=${page}`;
   } else {
-    link = `http://swapi.dev/api/starships/?page=${page}`;
+    link = `https://swapi.dev/api/starships/?page=${page}`;
   }
   fetch(`${link}`)
     .then((response) => {
@@ -169,7 +169,7 @@ function downloadNewItems(event) {
 
 function newFetch(page, status, value) {
   if (status) {
-    fetch(`http://swapi.dev/api/starships/?page=${page}`)
+    fetch(`https://swapi.dev/api/starships/?page=${page}`)
       .then((response) => {
         return response.json();
       })
@@ -177,7 +177,7 @@ function newFetch(page, status, value) {
         createCard(data, (staus = false));
       });
   } else {
-    fetch(`http://swapi.dev/api/starships/?search=${value}&page=${page}`)
+    fetch(`https://swapi.dev/api/starships/?search=${value}&page=${page}`)
       .then((response) => {
         return response.json();
       })
