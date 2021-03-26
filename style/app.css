@@ -1,0 +1,36 @@
+.footer__wr, .items__wr {
+  max-width: 1500px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.items__wr {
+  margin-top: 100px;
+}
+.items__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  row-gap: 60px;
+}
+
+.footer {
+  margin-top: 100px;
+}
+.footer__wr {
+  display: flex;
+  justify-content: center;
+}
+
+.color_li
+{
+    color: red;
+}
+
+.error
+{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 50px;
+}
