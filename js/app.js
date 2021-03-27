@@ -37,14 +37,18 @@ function seacrhItems(e) {
 function createCard(data, status) {
   let item_content = document.querySelector(".items__content");
   item_content.innerHTML = "";
-  data.results.map((item, index) => {
+  data.results.map((item) => {
     let itemContainer = document.createElement("div");
+    let link=item.url.split(":")
+    link[0]=link[0]+"s"
+    link=link.join(":")
+    console.log(link)
     itemContainer.className = "card";
     itemContainer.style.width = "18rem";
     itemContainer.innerHTML = `  
         <div class="card-body">
           <h5 class="card-title">${item.name}</h5>
-          <div class="idItems" style="display:none">${item.url}</div>
+          <div class="idItems" style="display:none">${link}</div>
           <span class="card-text model"><strong>Model: </strong>${item.model}</span>
           <p class="card-text created "><strong>Created: </strong>${item.created}</p>
           <a  class="btn btn-primary btnInfo ">Click for Info</a>
@@ -65,17 +69,7 @@ function createCard(data, status) {
 function buttonInfo(event) {
   let id = event.target.parentElement.querySelector(".idItems").innerHTML;
   let card = event.target.parentElement;
-  let inputSearch = document.querySelector(".inputSearch").value;
   let link;
-  let pageLink=document.querySelectorAll(".page-link")
-  for(let i=0;i<pageLink.length;i++)
-  {
- 
-    if(pageLink[i].classList[1]=="color_li")
-    {
-        var page=pageLink[i].innerHTML
-    } 
-  }
   link = `${id}`;
   fetch(`${link}`)
     .then((response) => {
@@ -83,7 +77,6 @@ function buttonInfo(event) {
     })
     .then((data) => {
       event.target.remove();
-      console.log(data)
       card.innerHTML = `  
         
           <h5 class="card-title">${data.name}</h5>
