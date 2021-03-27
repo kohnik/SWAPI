@@ -4,6 +4,7 @@ fetch("https://swapi.dev/api/starships/")
   })
   .then((data) => {
     createCard(data, (status = true));
+    
   });
 
 let btnSearch = document.querySelector(".btn-outline-success");
@@ -43,7 +44,7 @@ function createCard(data, status) {
     itemContainer.innerHTML = `  
         <div class="card-body">
           <h5 class="card-title">${item.name}</h5>
-          <div class="idItems" style="display:none">${index}</div>
+          <div class="idItems" style="display:none">${item.url}</div>
           <span class="card-text model"><strong>Model: </strong>${item.model}</span>
           <p class="card-text created "><strong>Created: </strong>${item.created}</p>
           <a  class="btn btn-primary btnInfo ">Click for Info</a>
@@ -75,28 +76,23 @@ function buttonInfo(event) {
         var page=pageLink[i].innerHTML
     } 
   }
-  
-  if (inputSearch) {
-    link = `https://swapi.dev/api/starships/?search=${inputSearch}&page=${page}`;
-  } else {
-    link = `https://swapi.dev/api/starships/?page=${page}`;
-  }
+  link = `${id}`;
   fetch(`${link}`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
       event.target.remove();
-
+      console.log(data)
       card.innerHTML = `  
         
-          <h5 class="card-title">${data.results[id].name}</h5>
+          <h5 class="card-title">${data.name}</h5>
           <div class="idItems" style="display:none">${id}</div>
-          <p class="card-text model"><strong>Model: </strong>${data.results[id].model}</p>
-          <p class="card-text"><strong>Length: </strong>${data.results[id].length}</p>
-          <p class="card-text"><strong>Passengers: </strong>${data.results[id].passengers}</p>
-          <p class="card-text"><strong>Starship class: </strong>${data.results[id].starship_class}</p>
-          <p class="card-text created"><strong>Created: </strong>${data.results[id].created}</p>
+          <p class="card-text model"><strong>Model: </strong>${data.model}</p>
+          <p class="card-text"><strong>Length: </strong>${data.length}</p>
+          <p class="card-text"><strong>Passengers: </strong>${data.passengers}</p>
+          <p class="card-text"><strong>Starship class: </strong>${data.starship_class}</p>
+          <p class="card-text created"><strong>Created: </strong>${data.created}</p>
           <a  class="btn btn-primary btnReturn ">Return</a> `;
       var btnReturn = document.querySelectorAll(".btnReturn ");
       for (let i = 0; i < btnReturn.length; i++) {
